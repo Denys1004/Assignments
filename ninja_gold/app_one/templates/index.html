@@ -9,7 +9,7 @@
 </head>
 <body>
     <div id="page_container">
-        <p>Your Gold: 0</p>
+        <p>Your Gold: {{ request.session.your_gold }}</p>
         <div class="forms_container">
             <form action="/process_money" method="POST">
                 {% csrf_token %}
@@ -51,4 +51,4 @@
     </div>
 
 </body>
-</html>
+</html> 
