@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>All Shows</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="page_container">
+        <div class="header">
+            <h1>Add a New Show</h1>
+            <a href="/shows">Go Back</a>
+        </div>
+
+        <form action="/process_new_show" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                Title:
+                <input type="text" name="title" class="form-control" id="title">
+            </div>
+            <div class="form-group group_1">
+                Network:
+                <input type="text" name="network" class="form-control" id="network">
+                Release Date:
+                <input type="date" class="form-control" name="release_date" id="release_date">
+            </div>
+            <div class="form-group">
+                Description:
+                <textarea class="form-control" id="exampleFormControlTextarea1" name='description'></textarea>
+            </div>
+            <div class="button_container">
+                <button>Create</button>
+            </div>
+        </form>
+        
+    </div>
+</body>
+</html>

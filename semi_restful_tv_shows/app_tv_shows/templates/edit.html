@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>All Shows</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="page_container">
+        <div class="header">
+            <h1>Edit {{needed_tv_show.title}}</h1>
+            <a href="/shows">Go Back</a>
+        </div>
+
+        <form action="/update" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                Title:
+                <input type="text" name="title" class="form-control" value = {{needed_tv_show.title}}>
+            </div>
+            <div class="form-group group_1">
+                Network:
+                <input type="text" name="network" class="form-control" value = {{needed_tv_show.network}}>
+                Release Date:
+                <input type="date" class="form-control" name="release_date" value="{{needed_tv_show.release_date|date:'Y-m-d'}}">
+            </div>
+            <div class="form-group">
+                Description:
+                <textarea class="form-control" name='description'>{{needed_tv_show.description }}</textarea>
+            </div>
+            <input type="hidden" name="id" value="{{needed_tv_show.id}}">
+            <div class="button_container">
+                <button>Update</button>
+            </div>
+        </form>
+        <a href="/shows/{{needed_tv_show.id}}">Go to Show</a>
+        
+    </div>
+</body>
+</html>
