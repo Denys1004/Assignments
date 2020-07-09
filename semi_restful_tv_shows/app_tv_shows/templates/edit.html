@@ -19,11 +19,11 @@
             {% csrf_token %}
             <div class="form-group">
                 Title:
-                <input type="text" name="title" class="form-control" value = {{needed_tv_show.title}}>
+                <input type="text" name="title" class="form-control" value = "{{needed_tv_show.title}}">
             </div>
             <div class="form-group group_1">
                 Network:
-                <input type="text" name="network" class="form-control" value = {{needed_tv_show.network}}>
+                <input type="text" name="network" class="form-control" value = "{{needed_tv_show.network}}">
                 Release Date:
                 <input type="date" class="form-control" name="release_date" value="{{needed_tv_show.release_date|date:'Y-m-d'}}">
             </div>

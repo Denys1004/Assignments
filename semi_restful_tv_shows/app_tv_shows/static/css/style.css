@@ -27,3 +27,7 @@
 .button_container{
     text-align: center;
 }
+
+.errors{
+    color: red;
+}

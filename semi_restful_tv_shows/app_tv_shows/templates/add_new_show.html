@@ -10,10 +10,18 @@
 </head>
 <body>
     <div class="page_container">
+
         <div class="header">
             <h1>Add a New Show</h1>
             <a href="/shows">Go Back</a>
         </div>
+        {% if messages %}                                                               		
+        <ul class="messages">  										  	
+            {% for message in messages %}    									
+                <li class="errors">{{ message }}</li>   	
+            {% endfor %}												
+        </ul>														
+        {% endif %}	
 
         <form action="/process_new_show" method="post">
             {% csrf_token %}

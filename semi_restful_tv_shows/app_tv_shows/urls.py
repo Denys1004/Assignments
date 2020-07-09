@@ -9,7 +9,5 @@ urlpatterns = [
     path('shows/<int:id>', views.show_one_tvshow),
     path('edit/<int:id>', views.edit),
     path('update', views.update),
-
     path('delete/<int:id>', views.delete)
-
 ]
