@@ -6,12 +6,24 @@
 }
 
 body{
-    background-color: green;
+    background-color: brown;
 }
 
 .page_container{
     max-width: 900px;
     margin: auto;
     padding: 20px;
-    background-color: brown;
+    background-color: rgb(255, 255, 255);
+}
+.h1_title{
+    margin-top: 60px;
+    margin-bottom: 20px;
+}
+
+.errors{
+    color: red;
+}
+
+.course_container{
+    display: flex;
 }
