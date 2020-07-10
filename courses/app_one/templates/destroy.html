@@ -14,16 +14,16 @@
         <h3>Are you sure you want to delete the following course?</h3>
 
         <div class="course_container">
-            <p>Name: </p>
+            <p class="ptitle">Name: </p>
             <p>{{current_course.name}} </p>
         </div>
         <div class="course_container">
-            <p>Description: </p>
+            <p class="ptitle">Description: </p>
             <p>{{current_course.description}} </p>
         </div>
         <div class="course_container">
-            <a class="no_button"  href="/">No</a>
-            <a class="yes_button" href="/remove/{{current_course.id}}">Yes, I want to delete this!</a>
+            <a class="a_button no_button"  href="/">No</a>
+            <a class="a_button yes_button" href="/remove/{{current_course.id}}">Yes, I want to delete this!</a>
         </div>
      
     </div>

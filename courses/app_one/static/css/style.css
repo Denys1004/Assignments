@@ -5,15 +5,11 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-body{
-    background-color: brown;
-}
 
 .page_container{
     max-width: 900px;
     margin: auto;
     padding: 20px;
-    background-color: rgb(255, 255, 255);
 }
 .h1_title{
     margin-top: 60px;
@@ -26,4 +22,23 @@ body{
 
 .course_container{
     display: flex;
+}
+.ptitle{
+    margin-right: 10px;
+    font-weight: bold;
+}
+.a_button{
+    padding: 10px 20px;
+    background-color: red;
+    margin-right: 40px;
+    color: white;
+}
+
+.a_button:hover{
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.no_button{
+    background-color: rgb(109, 109, 109);
 }
