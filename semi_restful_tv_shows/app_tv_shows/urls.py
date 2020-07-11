@@ -11,3 +11,30 @@ urlpatterns = [
     path('update', views.update),
     path('delete/<int:id>', views.delete)
 ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

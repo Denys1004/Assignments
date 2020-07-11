@@ -14,7 +14,9 @@ def all_shows(request):
 def add_new_show(request):
     return render(request, 'add_new_show.html')
 
-def validate(request, errors):
+
+def process_new_show(request):
+    errors = Show.objects.validator(request.POST)
     if len(errors)>0:
         for key, value in errors.items():
             messages.error(request, value)
@@ -24,13 +26,8 @@ def validate(request, errors):
             title = request.POST['title'],
             network = request.POST['network'],
             release_date = request.POST['release_date'],
-            description = request.POST['description']
-        )
-
-def process_new_show(request):
-    errors = Show.objects.validator(request.POST)
-    validate(request, errors)
-    return redirect('/shows')
+            description = request.POST['description'])
+        return redirect('/shows')
 
 def show_one_tvshow(request, id):
     num_id = int(id)
@@ -47,16 +44,18 @@ def edit(request, id):
 
 def update(request):
     errors = Show.objects.validator(request.POST)
-    validate(request, errors)
-    num_id = int(request.POST['id'])
-    str_id = request.POST['id']
-    edited_show = Show.objects.get(id = num_id)
-    edited_show.title = request.POST['title']
-    edited_show.network = request.POST['network']
-    edited_show.release_date = request.POST['release_date']
-    edited_show.description = request.POST['description']
-    edited_show.save()
-    return redirect('/shows')
+    if len(errors)>0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect(f'/edit/{request.POST["id"]}')
+    else:
+        edited_show = Show.objects.get(id = request.POST['id'])
+        edited_show.title = request.POST['title']
+        edited_show.network = request.POST['network']
+        edited_show.release_date = request.POST['release_date']
+        edited_show.description = request.POST['description']
+        edited_show.save()
+        return redirect('/shows')
 
 
 def delete(request, id):
@@ -65,3 +64,14 @@ def delete(request, id):
     needed_show.delete()
 
     return redirect('/shows') 
+
+
+
+
+
+
+
+
+
+
+
