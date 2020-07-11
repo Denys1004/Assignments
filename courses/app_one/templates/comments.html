@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="page_container">
+        {% if messages %}                                                               		
+        <ul class="messages">  										  	
+            {% for message in messages %}    									
+                <li class="errors">{{ message }}</li>   	
+            {% endfor %}												
+        </ul>														
+        {% endif %}	
+
+        <!-- Add a new comment -->
+        <div class="container my-4">
+            <h3>Add a New Comment</h3>
+            <form action="/courses/{{course.id}}/comment" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="content">Description</label>
+                    <textarea name="content" cols="10" rows="5" class="form-control w-50"></textarea>
+                </div>
+                <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                <a href="/" role="button" class="btn btn-secondary btn-sm">Go Back</a>
+            </form>
+        </div>
+
+        <div class="container">
+            <h3>All Comments</h3>
+            {% for comment in course.comments.all %}
+                <blockquote class="blockquote">
+                    <p class="mb-0">{{ comment.content }}</p>
+                    <footer class="blockquote-footer">{{ comment.created_at|date:'M d, Y P'}}</footer>
+                </blockquote>
+            {% endfor %}
+        </div>
+
+
+
+
+    </div>
+    
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

@@ -14,6 +14,7 @@ def checkout(request):
     price=last.total_price
     full_order = Order.objects.aggregate(Sum('quantity_ordered'))['quantity_ordered__sum']
     full_price = Order.objects.aggregate(Sum('total_price'))['total_price__sum']
+    full_price = round(full_price, 2)
     context = {
         'orders':full_order,
         'total':full_price,
