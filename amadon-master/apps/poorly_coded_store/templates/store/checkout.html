@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <title>Amadon</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h3>Thank you for your business!</h3>
-    <p>We charged your credit card for ${{bill}}</p>
-    <p>You have ordered {{orders}} items so far and spent ${{total}} with Amadon.com!</p>
-    <p><a href="/">Go Back</a></p>
+    <div class="page_container">
+        <h3>Thank you for your business!</h3>
+        <p>We charged your credit card for ${{bill}}</p>
+        <p>You have ordered {{orders}} items so far and spent ${{total}} with Amadon.com!</p>
+        <p><a href="/">Go Back</a></p>
+    </div>
 </body>
 </html>

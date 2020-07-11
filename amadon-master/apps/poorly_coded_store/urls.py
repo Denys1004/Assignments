@@ -1,8 +1,8 @@
-from django.conf.urls import url
+from django.urls import path
 from . import views
 
 urlpatterns = [
-    url('', views.index),
-    url('process', views.process),
-    url('checkout', views.checkout)
+    path('', views.index),
+    path('checkout', views.checkout),
+    path('process', views.process),
 ]
