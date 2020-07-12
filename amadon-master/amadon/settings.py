@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'apps.poorly_coded_store',
+    'apps.app1',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

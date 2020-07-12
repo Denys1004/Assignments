@@ -9,6 +9,21 @@ def index(request):
     return render(request, "store/index.html", context)
 
 
+def buy_product(request):
+    if request.method == 'POST':
+        this_product = Product.objects.filter(id=request.POST['id']) # returning list ob objects
+        if not this_product: # here we covering situation if user press buy, without selecting any product (in general).
+            return redirect('/')
+        else:
+            quantity = int(request.POST["quantity"])
+            total_price = quantity*(float(this_product[0].price)) # first object from the list
+            Order.objects.create(quantity_ordered=quantity, total_price=total_price)
+            return redirect('/checkout')
+    else:
+        return redirect('/') 
+
+
+
 def checkout(request):
     last = Order.objects.last()
     price=last.total_price
@@ -23,15 +38,33 @@ def checkout(request):
     return render(request, "store/checkout.html",context)
 
 
-def process(request):
-    if request.method == 'POST':
-        this_product = Product.objects.filter(id=request.POST["id"])
-        if not this_product:       #checking if this product not exists
-            return redirect('/')
-        else:
-            quantity = int(request.POST["quantity"])
-            total_charge = quantity*(float(this_product[0].price))
-            Order.objects.create(quantity_ordered=quantity, total_price=total_charge)
-            return redirect('/checkout')
-    else:
-        return redirect('/')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

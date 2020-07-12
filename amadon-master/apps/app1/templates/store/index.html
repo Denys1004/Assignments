@@ -8,12 +8,13 @@
     <title>Amadon</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="page_container">
         <h1>Amadon Store!</h1>
         <table class="table">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <th>Item</th>
                     <th>Price</th>
@@ -24,7 +25,7 @@
             <tbody>
                 {% for product in all_products %}
                 <tr>
-                    <form action="/process" method="post">
+                    <form action="/buy_product" method="post">
                         {% csrf_token %}
                         <td>{{product.description}}</td>
                         <td><input type="hidden" name="id" value="{{product.id}}">{{product.price}}</td>
