@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Order, Product
-from django.db.models import Sum
+# from django.db.models import Sum
 
 def index(request):
     context = {
@@ -27,12 +27,20 @@ def buy_product(request):
 def checkout(request):
     last = Order.objects.last()
     price=last.total_price
-    full_order = Order.objects.aggregate(Sum('quantity_ordered'))['quantity_ordered__sum']
-    full_price = Order.objects.aggregate(Sum('total_price'))['total_price__sum']
-    full_price = round(full_price, 2)
+    # full_order = Order.objects.aggregate(Sum('quantity_ordered'))['quantity_ordered__sum']
+    # full_price = Order.objects.aggregate(Sum('total_price'))['total_price__sum']
+    all_orders = Order.objects.all()
+    order_sum = 0
+    qty = 0
+    for order in all_orders:
+        order_sum += order.total_price
+        qty += order.quantity_ordered
+
+
+    order_sum = round(order_sum, 2)
     context = {
-        'orders':full_order,
-        'total':full_price,
+        'orders':qty,
+        'total':order_sum,
         'bill':price,
     }
     return render(request, "store/checkout.html",context)
