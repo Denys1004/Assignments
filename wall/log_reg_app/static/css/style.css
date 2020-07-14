@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+.page_container{
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+#forms_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+#forms_container > form{
+    flex: 1;
+    margin: 0 40px;
+}
+
+.sucsess{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
