@@ -5,7 +5,26 @@ import bcrypt
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')							
 							
-class UserManager(models.Manager):												
+class UserManager(models.Manager):
+
+    def register(self, postData):
+        pw_hash = bcrypt.hashpw(postData['password'].encode(), bcrypt.gensalt()).decode() # create the hash 
+        return self.create(
+            first_name=postData['first_name'], 
+            last_name=postData['last_name'], 
+            birth_date=postData['birth_date'], 
+            email=postData['email'], password=pw_hash
+        )
+
+    # Checking login 
+    def authenticate(self, email, password):
+        user_with_email = self.filter(email = email)
+        if not user_with_email: # we querint for all users with this email, and if its empty list:
+            return False
+        user = user_with_email[0] # if we do have user with that email in our system:
+        return bcrypt.checkpw(password.encode(), user.password.encode()) # checkpw returns True of False
+
+
     def validator(self, postData):												
         errors = {}																										
         if 'id' not in postData:  #Creating. if id not exists, that means we creating user

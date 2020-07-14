@@ -3,6 +3,8 @@ from .models import *
 from django.contrib import messages
 import bcrypt
 
+from django.contrib.auth.decorators import login_required
+
 
 def index(request):
     context = {
@@ -10,39 +12,28 @@ def index(request):
     }
     return render(request, "index.html", context)
 
+
 def success(request):
     return render(request, "success.html")
 
 def registration(request):
-    if request.method == "POST":
-        errors = User.objects.validator(request.POST)										
-        if len(errors)>0:													
-            for value in errors.values():											
-                messages.error(request, value)											
-            return redirect('/')									
-        else:
-            if request.POST['first_name'] not in request.session:
-                request.session["name"] = request.POST['first_name']
-            password = request.POST['password']										
-            pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode() # create the hash 
-            User.objects.create(first_name=request.POST['first_name'], last_name=request.POST['last_name'], birth_date=request.POST['birth_date'], email=request.POST['email'], password=pw_hash)
-            return redirect("/success") # never render on a post, always redirect!  																	
-    return redirect("/")
+    errors = User.objects.validator(request.POST)	
+    if len(errors)>0:													
+        for value in errors.values():											
+            messages.error(request, value)											
+        return redirect('/')
+    # hash users password before storing it into db
+    User.objects.register(request.POST)
+    return redirect('/success')
 
 
 def login(request):
-    results = User.objects.filter(email=request.POST['email'])
-    if len(results) > 0:
-        if bcrypt.checkpw(request.POST['password'].encode(), results[0].password.encode()) and results[0].email == request.POST['email']:
-            request.session['user_id'] = results[0].id
-            request.session["name"] = results[0].first_name
-            return redirect('/success')
-        else:
-            messages.error(request, "Email or passwort did not match.")
-            return redirect("/")
+    result = User.objects.authenticate(request.POST['email'],request.POST['password']) # Checking login
+    if result == False:
+        messages.error(request, "Email or passwort do not match.")
     else:
-        messages.error(request, "Email or passwort did not match.")
-        return redirect("/")
+        return redirect('/success')
+
             
 
 def logout(request):
