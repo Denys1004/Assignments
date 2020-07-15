@@ -1,3 +1,4 @@
+/*
 $('form').submit(function(event){
     event.preventDefault();             // 1. First prevent default behavier
     var form = $(this);                 // 3. data will come from the form object, this refers to the form where event were fired from (if we ave many forms, this will be the one where submit button was clicked)
@@ -16,3 +17,4 @@ $('form').submit(function(event){
 // 8. create new html (users.html) with what you've cut from <tbody> 
 // 9. The idea is if we can take response from server(now its whole html), and if this response was just <tr>users</tr>, 
 // select my tbody and SET inner html to be that renponse <tr>users</tr>.
+*/
