@@ -19,8 +19,12 @@
             {% endfor %}                                                								
         </ul>                                                      									
         {% endif %} 
-        <form action="/register" method="post">
+        <div class="header">
             <h1>Registration</h1>
+            <a href="/login">Back to Login</a>
+        </div>
+        <form action="/register" method="post">
+           
             {% csrf_token %}
             <div class="form-group">
                 <label for="first_name">First Name:</label>

@@ -20,7 +20,11 @@
         </ul>                                                      									
         {% endif %} 
         <form action="/login" method="post">
-            <h1>Login</h1>
+            <div class="display_flex">
+                <h1>Login</h1>
+                <a href="/">Home</a>
+            </div>
+            
             {% csrf_token %}
             <div class="form-group">
                 <label for="email">Email:</label>
@@ -32,7 +36,10 @@
             </div>
             <button class="btn btn-primary">Login</button>
         </form>
-        <a href="/register">Register New User</a>
+        <div id="link_to_new_user">
+            <a href="/register" >Register New User</a>
+        </div>
+        
       
     </div>
 </body>

@@ -13,8 +13,8 @@
 <body>
     <div class="page_container">
         <div class="header">
-            <h1>Welcome {{ cur_user.first_name }} to the wall!</h1>
-            <a href="/logout">logOut</a>
+            <h1>{{ cur_user.first_name }}, welcome to the wall!</h1>
+            <a href="/logout">Logout</a>
         </div>
         <div class="form_container">
             <form class ="form-group" method="POST" action="/wall/create_message">
@@ -108,3 +108,4 @@
     <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 </body>
 </html>
+

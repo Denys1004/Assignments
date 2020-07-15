@@ -11,10 +11,19 @@
     <script defer src="{% static 'js/welcome.js' %}"></script>
 </head>
 <body>
-    <div class="page_container">
-        <h1>Welcome Page!</h1>
-        <p>Please <a href="/login">logIn</a> to continue</p>
+    <div id="welcome_page">
+        
+        <div class="page_container">
+            <div class="align_center">
+                <h1>Welcome Page!</h1>
+                <hr>
+                <p>Please <a id="login_a" href="/login">Login</a> to continue</p>
+            </div>
+        </div>
+        <img id="logo_img" src="{% static 'images/wall_logo.jpg' %}" alt="logo_img">
+        
     </div>
+
     
 </body>
 </html>

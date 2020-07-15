@@ -49,6 +49,11 @@ def delete_message(request, id):
     return redirect('/wall')
 
 def delete_user(request, id):
+    if id == request.session['user_id']:
+        current_user = User.objects.get(id = request.session['user_id'])
+        current_user.delete()
+        request.session.clear()
+        return redirect("/login")
     user_to_delete = User.objects.get(id = id)
     user_to_delete.delete()
     return redirect('/wall')
