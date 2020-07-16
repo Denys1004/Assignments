@@ -1,6 +1,7 @@
 from django.db import models
 import re													
 import datetime
+from datetime import date
 import bcrypt
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')							
@@ -37,6 +38,7 @@ class UserManager(models.Manager):
                 errors['last_name'] = 'Last name should be atleast 2 characters long'
             if not postData['last_name'].isalpha() and postData['first_name'] != '':
                 errors['last_name'] = 'Last name must containt only letters.'
+
             # DATE VALIDATION
             # if - checks if birthday field is empty	
             # else - checks if user older then 13 years:
@@ -51,6 +53,9 @@ class UserManager(models.Manager):
                 age = todays_year - birthday
                 if age < 13:										
                     errors['birth_date'] = 'User must be older then 13 years.'	
+                datetime_str = datetime.strptime(datetime_str, '%Y-%m-%d')
+                if datetime_str > birthday:
+                    errors['release_date'] = 'Release date must be in the past.'
             # EMAIL VALIDATION
             if len(postData['email']) < 1:
                 errors['email'] = "Email cannot be blank."

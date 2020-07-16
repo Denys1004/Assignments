@@ -1,6 +1,6 @@
 from django.db import models
 import re													
-from datetime import datetime
+import datetime
 import bcrypt
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')							
@@ -36,18 +36,15 @@ class UserManager(models.Manager):
         # DATE VALIDATION
         if len(postData['birth_date']) < 1:	                							
             errors['birth_date'] = 'Birth date required.'
-        else: 
-            current_date = datetime.now()                                              
-            date_from_form = postData['birth_date']
-            converted_date_from_form = datetime.strptime(date_from_form, "%Y-%m-%d")
-            duration = current_date - converted_date_from_form
-            age = duration.days / 365.25
+        else:                                               
+            today = datetime.date.today()
+            todays_year = today.year
+            birthday = postData['birth_date'] 
+            x = birthday[0] + birthday[1] + birthday[2] + birthday[3]
+            birthday = int(x)
+            age = todays_year - birthday
             if age < 13:										
                 errors['birth_date'] = 'User must be older then 13 years.'	
-
-            if datetime.strptime(postData['birth_date'], '%Y-%m-%d') > datetime.now():
-                errors['birth_date'] = 'Date of birth should be in the past.'
-            
         # EMAIL VALIDATION
         if len(postData['email']) < 1:
             errors['email'] = "Email cannot be blank."

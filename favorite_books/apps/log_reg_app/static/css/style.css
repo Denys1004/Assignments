@@ -1,0 +1,122 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#welcome_page{
+    height: 100vh;
+    color: white;
+    background-color: #01061a;
+    text-align: center;
+}
+#logo_img{
+    max-width: 60%;
+    margin: 0 auto;
+    height: auto;
+}
+.page_container{
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+#forms_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+#forms_container > form{
+    flex: 1;
+    margin: 0 40px;
+}
+
+.sucsess{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.head_message{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.bottom_message{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 50%;
+    align-items: center;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#display_messages{
+    background-color: rgb(228, 228, 228);
+    padding: 20px 30px;
+}
+.like{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.like > a{
+    margin: 0 4px;
+}
+ion-icon {
+    color: #007bff;
+    font-size: 18px;
+}
+
+.likess{
+    margin-bottom: 0;
+    color: #007bff;;
+}
+
+.comment_container{
+    font-style: italic;
+    color:rgb(131, 131, 131);
+
+}
+.comment_p{
+    margin: 0;
+    padding: 20px 0 0;
+    color: black;
+}
+.posted_info{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 50%;
+    align-items: center;
+}
+.warning{
+    color: red;
+}
+.page_container > #link_to_new_user{
+    margin-top: 20px;
+    text-align: center;
+}
+
+#login_a{
+    color: rgb(156, 200, 254);
+    font-size: 25px;
+    letter-spacing: 2px;
+    margin: 0 5px;
+}
+
+
+.align_center{
+    text-align: center;
+}
+.display_flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

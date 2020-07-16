@@ -38,14 +38,14 @@
             <div class='dsvsv'>
                 <div class="head_message">
                     <h4>{{mess.poster.first_name}} {{mess.poster.last_name}}</h4>
-                    <a href="wall/delete_message/{{mess.id}}">Delete Message</a>
+                    <a href="delete_message/{{mess.id}}">Delete Message</a>
                 </div>
                 <p>{{mess.message}}</p>  
                 <div class="bottom_message">
                     <span class="small">{{mess.created_at}}</span>
                     <div class="like">
                         <ion-icon name="heart"></ion-icon>
-                        <a href="wall/like/{{mess.id}}">Like</a>
+                        <a href="like/{{mess.id}}">Like</a>
                         <p class="likess">{{mess.likes.count}}</p>
                     </div>
                     <div></div>
@@ -63,7 +63,7 @@
                 
                 {% endfor %}
 
-                <form action="wall/add_comment/{{mess.id}}" method="post">
+                <form action="add_comment/{{mess.id}}" method="post">
                     {% csrf_token %}
                     <div class="form-group">
                         <textarea  class="form-control" name="comment" id="comment"></textarea>
@@ -94,7 +94,7 @@
                     <td>{{ user.first_name }} {{user.last_name}}</td>
                     <td>{{ user.birth_date|date:"SHORT_DATE_FORMAT" }}</td>
                     <td>{{ user.email }}</td>
-                    <td><a href="/wall/delete_user/{{ user.id }}">delete user</a></td>
+                    <td><a href="delete_user/{{ user.id }}">delete user</a></td>
                 </tr>
                 {% endfor %}
 
