@@ -34,6 +34,12 @@ def add_like(request, id):
     message_liked.likes.add(user_liking)
     return redirect('/wall')
 
+def remove_like(request, id):
+    user_liking = User.objects.get(id = request.session['user_id'])
+    message_liked = Message.objects.get(id = id)
+    message_liked.likes.remove(user_liking)
+    return redirect('/wall')
+
 def delete_message(request, id):
     message_to_delete = Message.objects.get(id=id)
     posted_time = message_to_delete.created_at

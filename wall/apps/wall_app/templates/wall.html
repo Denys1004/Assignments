@@ -45,7 +45,11 @@
                     <span class="small">{{mess.created_at}}</span>
                     <div class="like">
                         <ion-icon name="heart"></ion-icon>
+                        {% if cur_user in mess.likes.all %}
+                        <a href="unlike/{{mess.id}}">Unlike</a>
+                        {% else %}
                         <a href="like/{{mess.id}}">Like</a>
+                        {% endif %}
                         <p class="likess">{{mess.likes.count}}</p>
                     </div>
                     <div></div>
